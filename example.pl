@@ -1,7 +1,7 @@
 package Example;
 
-use Data::Dumper;
 use File::Spec;
+use Data::Dumper;
 
 my $file = File::Spec->catfile('Perl.pm');
 
