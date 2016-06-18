@@ -1,0 +1,18 @@
+package Example;
+use Data::Dumper;
+use File::Slupr qw(
+	read_file
+	write_file
+);
+use File::Spec;
+
+
+
+
+my $file = File::Spec->catfile('Perl.pm');
+
+
+
+my $file_content = read_file($file);
+
+1;
