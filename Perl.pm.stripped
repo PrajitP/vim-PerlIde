@@ -1,5 +1,25 @@
 package Vim::Perl;
 
+use Data::Dumper;
+use Exporter ();
+use File::Basename qw(basename dirname);
+use File::Dat::Utils qw( readarr );
+use File::Slurp qw(
+  append_file
+  edit_file
+  edit_file_lines
+  read_file
+  write_file
+  prepend_file
+);
+use File::Spec::Functions qw(catfile rel2abs curdir catdir );
+use Text::TabularDisplay;
+use integer;
+use strict;
+use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
+use warnings;
+
+
 =head1 NAME 
 
 Vim::Perl - Perl package for efficient interaction with VimScript

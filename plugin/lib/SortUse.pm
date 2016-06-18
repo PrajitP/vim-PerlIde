@@ -1,3 +1,4 @@
+package SortUse;
 
 use PPI;
 use PPI::Dumper;
@@ -25,9 +26,9 @@ sub FindUseStatements {
 	return $useStatements;
 }
 
-sub SortUseStatements {
-	my $useStatements    = shift;
-	my @sortedStatements = sort { $b->schild(1)->content cmp $a->schild(1)->content } @{$useStatements};
+sub SortStatements {
+	my $statements    = shift;
+	my @sortedStatements = sort { $b->schild(1)->content cmp $a->schild(1)->content } @{$statements};
 	return \@sortedStatements;
 }
 
@@ -47,18 +48,41 @@ sub InsertSortedUseStatements {
 	return $document;
 }
 
-my $document 			= PPI::Document->new($testModule);
-my $useStatements       = FindUseStatements($document);
-my $sortedUseStatements = SortUseStatements($useStatements);
-$document 				= InsertSortedUseStatements($document, $sortedUseStatements);
+sub SortUseStatements {
+	my @document_lines      = @_;
+	my $document_content    = join("\n", @document_lines);
+	my $document 			= PPI::Document->new(\$document_content);
+	#my $document 			= PPI::Document->new(\@document_lines);
+	my $useStatements       = FindUseStatements($document);
+	my $sortedUseStatements = SortStatements($useStatements);
+	$document 				= InsertSortedUseStatements($document, $sortedUseStatements);
+	my $final_document_content = $document->serialize();
+	my @final_document_content = split(/\n/, $final_document_content);
+	return @final_document_content;
+}
 
-print "Updated doc...\n";
-$document->save("$testModule.stripped");
-print "Document saved\n";
+#use File::Slurp qw(
+#	read_file
+#);
+
+#use File::Spec;
+#my $file = File::Spec->catfile('example.pl');
+#my @content = read_file($file);
+#my @final_content = SortUseStatements(@content);
+#for my $line(@final_content){
+#	print "$line";
+#}
+#print Data::Dumper->Dump( [\@final_content], ['myBuff']);
+#print "Updated doc...\n";
+#$document->normalized();
+#my $finalFileContent = $document->serialize();
+#print $finalFileContent;
+#$document->save("$testModule.stripped");
+#print "Document saved\n";
 
 # http://search.cpan.org/dist/Class-Inspector/lib/Class/Inspector.pm
 
 
 #my $Dumper = PPI::Dumper->new( $document );
 #$Dumper->print;
-
+1;
