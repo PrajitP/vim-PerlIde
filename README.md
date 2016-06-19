@@ -18,5 +18,39 @@ Use your plugin manager of choice.
 
 ## Todo
 
-1. Write a plugin
-2. Write documentation
+## How to use
+1. To sort all use statement in perl code \
+    `:SortUse` \
+Example
+```perl
+package Foo;
+use File::Spec;
+use Data::Dumper;
+my $file = File::Spec->catfile('Perl.pm');
+use File::Slupr qw(
+    read_file
+    write_file
+);
+my $file_content = read_file($file);
+my $new_content = $file_content.' append_line';
+1;
+```
+will change to
+```perl
+package Foo;
+
+use Data::Dumper;
+use File::Slupr qw(
+    read_file
+    write_file
+);
+use File::Spec;
+
+
+
+my $file = File::Spec->catfile('Perl.pm');
+
+my $file_content = read_file($file);
+my $new_content = $file_content.' append_line';
+1;
+```
