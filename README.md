@@ -4,23 +4,26 @@
 
 Use your plugin manager of choice.
 
-- [Pathogen](https://github.com/tpope/vim-pathogen)
-  - `git clone https://github.com/PrajitP/PerlIde ~/.vim/bundle/PerlIde`
 - [Vundle](https://github.com/gmarik/vundle)
-  - Add `Bundle 'https://github.com/PrajitP/PerlIde'` to .vimrc
-  - Run `:BundleInstall`
-- [NeoBundle](https://github.com/Shougo/neobundle.vim)
-  - Add `NeoBundle 'https://github.com/PrajitP/PerlIde'` to .vimrc
-  - Run `:NeoBundleInstall`
-- [vim-plug](https://github.com/junegunn/vim-plug)
-  - Add `Plug 'https://github.com/PrajitP/PerlIde'` to .vimrc
-  - Run `:PlugInstall`
+  - Add `Plugin 'PrajitP/vim-PerlIde'` to your vundle configuration.
+  - Run `:PluginInstall`
+  - Add `source ~/.vim/bundle/vim-PerlIde/plugin/PerlIde.vim` in your .vimrc file.
 
-## Todo
+- I have not tried with other plugin managers but it should work.
 
-## How to use
-1. To sort all use statement in perl code \
-    `:SortUse` \
+## Overview
+Aim of this plugin is to build a good Perl IDE using Perl, the plugin is divided into two parts:
+
+* Vim API to intract with the Vim editor.
+  * Uses Vim-Perl API, as described [here](http://vimdoc.sourceforge.net/htmldoc/if_perl.html).
+  * NOTE : To run this plugin, your Vim should be compiled with Perl.
+    * To test if your Vim was compile with Perl, run `vim --version`, if you find text `+perl` then you are good to go.
+* Perl API to analyze the Perl code.
+  * Using [PPI](https://metacpan.org/pod/PPI) module to parse the Perl code.
+
+## Currently available features 
+* Sort all use statement in perl code, run `:SortUse`.
+
 Example
 ```perl
 package Foo;
