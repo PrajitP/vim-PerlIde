@@ -1,0 +1,7 @@
+PREFIX=/home/prajit/vimPlugin/perlIde/plugin/externalCpanLib/ \
+INSTALLPRIVLIB=/home/prajit/vimPlugin/perlIde/plugin/externalCpanLib/ \
+INSTALLSCRIPT=/home/prajit/vimPlugin/perlIde/plugin/externalCpanLib/bin \
+INSTALLSITELIB=/home/prajit/vimPlugin/perlIde/plugin/externalCpanLib/site_perl \
+INSTALLBIN=/home/prajit/vimPlugin/perlIde/plugin/externalCpanLib/bin \
+INSTALLMAN1DIR=/home/prajit/vimPlugin/perlIde/plugin/externalCpanLib/man  \
+INSTALLMAN3DIR=/home/prajit/vimPlugin/perlIde/plugin/externalCpanLib/man3
