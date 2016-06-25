@@ -6,9 +6,7 @@
 "  Function(s)
 " --------------------------------
 
-"perl use lib "$ENV{HOME}/vimPlugin/perlId/plugin/externalCpanLib/lib/perl5/";
-"perl use lib "$ENV{HOME}/vimPlugin/perlIde/plugin/lib/";
-perl use lib "$ENV{HOME}/.vim/bundle/vim-PrelIde/plugin/externalCpanLib/lib/perl5/";
+perl use lib "$ENV{HOME}/.vim/bundle/vim-PerlIde/plugin/externalCpanLib/lib/perl5/";
 perl use lib "$ENV{HOME}/.vim/bundle/vim-PerlIde/plugin/lib/";
 
 function! SortUseStatements()

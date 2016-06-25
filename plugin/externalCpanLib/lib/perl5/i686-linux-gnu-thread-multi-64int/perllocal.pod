@@ -1,10 +1,10 @@
-=head2 Sun Jun 19 16:31:49 2016: C<Module> L<PPI|PPI>
+=head2 Sat Jun 25 14:59:07 2016: C<Module> L<PPI|PPI>
 
 =over 4
 
 =item *
 
-C<installed into: /home/prajit/vimPlugin/perlIde/plugin/externalCpanLib/lib/perl5>
+C<installed into: /home/prajit/vimPlugin/localCpanBuild//lib/perl5>
 
 =item *
 
@@ -13,6 +13,160 @@ C<LINKTYPE: dynamic>
 =item *
 
 C<VERSION: 1.220>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Sat Jun 25 15:00:15 2016: C<Module> L<Digest::MD5|Digest::MD5>
+
+=over 4
+
+=item *
+
+C<installed into: /home/prajit/vimPlugin/localCpanBuild//lib/perl5>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 2.55>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Sat Jun 25 15:02:32 2016: C<Module> L<Params::Util|Params::Util>
+
+=over 4
+
+=item *
+
+C<installed into: /home/prajit/vimPlugin/localCpanBuild//lib/perl5>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 1.07>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Sat Jun 25 15:08:43 2016: C<Module> L<Clone|Clone>
+
+=over 4
+
+=item *
+
+C<installed into: /home/prajit/vimPlugin/localCpanBuild//lib/perl5>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.38>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Sat Jun 25 15:10:09 2016: C<Module> L<Exporter::Tiny|Exporter::Tiny>
+
+=over 4
+
+=item *
+
+C<installed into: /home/prajit/vimPlugin/localCpanBuild//lib/perl5>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.042>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Sat Jun 25 15:15:08 2016: C<Module> L<Exporter::Tiny|Exporter::Tiny>
+
+=over 4
+
+=item *
+
+C<installed into: /home/prajit/vimPlugin/localCpanBuild//lib/perl5>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.042>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Sat Jun 25 15:15:43 2016: C<Module> L<List::MoreUtils|List::MoreUtils>
+
+=over 4
+
+=item *
+
+C<installed into: /home/prajit/vimPlugin/localCpanBuild//lib/perl5>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.415>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Sat Jun 25 15:16:55 2016: C<Module> L<IO::String|IO::String>
+
+=over 4
+
+=item *
+
+C<installed into: /home/prajit/vimPlugin/localCpanBuild//lib/perl5>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 1.08>
 
 =item *
 
