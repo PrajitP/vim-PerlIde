@@ -1,27 +1,39 @@
 " --------------------------------
-" Add our plugin to the path
+" Environment Setup
 " --------------------------------
+
+perl use lib "$ENV{HOME}/.vim/bundle/vim-PerlIde/plugin/externalCpanLib/lib/perl5/";
+perl use lib "$ENV{HOME}/.vim/bundle/vim-PerlIde/plugin/lib/";
+perl use Dispatch;
 
 " --------------------------------
 "  Function(s)
 " --------------------------------
 
-perl use lib "$ENV{HOME}/.vim/bundle/vim-PerlIde/plugin/externalCpanLib/lib/perl5/";
-perl use lib "$ENV{HOME}/.vim/bundle/vim-PerlIde/plugin/lib/";
-
-function! SortUseStatements()
+function! RemoveUnwantedNewLines()
 	perl << EOF
-	use SortUse;
-	my @buffers = VIM::Buffers();
-	my $myBuf = $buffers[0];
-	my @lines = $myBuf->Get(1..$myBuf->Count());
-	@lines = SortUse::SortUseStatements(@lines);
-	$myBuf->Delete(1, $myBuf->Count());
-	$myBuf->Append(0, @lines);   # Replace all lines from 1th index
+	Dispatch::RemoveNewLines();
 EOF
 endfunction
+command! RemoveUnwantedNewLines call RemoveUnwantedNewLines()
 
-" --------------------------------
-"  Expose our commands to the user
-" --------------------------------
-command! SortUse call SortUseStatements()
+function! RemoveAllNewLines()
+	perl << EOF
+	Dispatch::RemoveNewLines(all => 1);
+EOF
+endfunction
+command! RemoveAllNewLines call RemoveAllNewLines()
+
+function! GroupUse()
+	perl << EOF
+	Dispatch::GroupUse();
+EOF
+endfunction
+command! GroupUse call GroupUse()
+
+function! GroupSortUse()
+	perl << EOF
+	Dispatch::GroupUse(sort => 1);
+EOF
+endfunction
+command! GroupSortUse call GroupSortUse()

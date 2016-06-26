@@ -1,13 +1,11 @@
 package SortUse;
 
+use Data::Dumper;
 use PPI;
 use PPI::Dumper;
- 
-my $testModule = 'example.pl'; 
- 
-use Data::Dumper;
+use Params::Validate qw(:all);
 
-sub FindUseStatements {
+sub _FindUseStatements {
 	my $document = shift;
 	my $useStatements = $document->find( 
 		sub {
@@ -26,63 +24,56 @@ sub FindUseStatements {
 	return $useStatements;
 }
 
-sub SortStatements {
+sub _SortStatements {
 	my $statements    = shift;
 	my @sortedStatements = sort { $b->schild(1)->content cmp $a->schild(1)->content } @{$statements};
 	return \@sortedStatements;
 }
 
-sub InsertSortedUseStatements {
-	my $document = shift;
-	my $sortedUseStatements = shift;
-	my $firstStatment = $document->find_first('PPI::Statement::Package');
-	my $newLineStatement = PPI::Token::Whitespace->new("\n");
-
-	$firstStatment->insert_after( $newLineStatement );
-	for my $statement (@{$sortedUseStatements}) {
-		my $use_statement = $statement->remove;
-		$firstStatment->insert_after( $use_statement );
-		$firstStatment->insert_after( $newLineStatement );
+sub _ReverseStatements {
+	my $statements         = shift;
+	my @reversedStatements = ();
+	for my $statement(@{$statements}) {
+		unshift(@reversedStatements, $statement);
 	}
-	$firstStatment->insert_after( $newLineStatement );
+	return \@reversedStatements;
+}
+
+sub _InsertUseStatements {
+	my $document 			= shift;
+	my $finalUseStatements = shift;
+	my $insertLocation    	= $document->find_first('PPI::Statement::Package');
+	my $newLineStatement 	= PPI::Token::Whitespace->new("\n");
+
+	if($insertLocation){
+		$insertLocation->insert_after( $newLineStatement );
+		for my $statement (@{$finalUseStatements}) {
+			my $use_statement = $statement->remove;
+			$insertLocation->insert_after( $use_statement );
+			$insertLocation->insert_after( $newLineStatement );
+		}
+		$insertLocation->insert_after( $newLineStatement );
+	}
 	return $document;
 }
 
-sub SortUseStatements {
-	my @document_lines      = @_;
-	my $document_content    = join("\n", @document_lines);
-	my $document 			= PPI::Document->new(\$document_content);
-	#my $document 			= PPI::Document->new(\@document_lines);
-	my $useStatements       = FindUseStatements($document);
-	my $sortedUseStatements = SortStatements($useStatements);
-	$document 				= InsertSortedUseStatements($document, $sortedUseStatements);
+sub GroupUse {
+	my %args = validate(
+		@_, {
+			sort  => { type => SCALAR, default => 0 },
+			input => { type => ARRAYREF },
+		}
+	);
+	my @document_lines      = @{$args{input}};
+	my $document 			= PPI::Document->new(\@document_lines);
+	my $useStatements       = _FindUseStatements($document);
+	my $finalUseStatements 	= $args{sort} ? _SortStatements($useStatements) : _ReverseStatements($useStatements);
+	$document 				= _InsertUseStatements($document, $finalUseStatements);
 	my $final_document_content = $document->serialize();
 	my @final_document_content = split(/\n/, $final_document_content);
 	return @final_document_content;
 }
 
-#use File::Slurp qw(
-#	read_file
-#);
-
-#use File::Spec;
-#my $file = File::Spec->catfile('example.pl');
-#my @content = read_file($file);
-#my @final_content = SortUseStatements(@content);
-#for my $line(@final_content){
-#	print "$line";
-#}
-#print Data::Dumper->Dump( [\@final_content], ['myBuff']);
-#print "Updated doc...\n";
-#$document->normalized();
-#my $finalFileContent = $document->serialize();
-#print $finalFileContent;
-#$document->save("$testModule.stripped");
-#print "Document saved\n";
-
-# http://search.cpan.org/dist/Class-Inspector/lib/Class/Inspector.pm
-
-
-#my $Dumper = PPI::Dumper->new( $document );
-#$Dumper->print;
 1;
+
+
